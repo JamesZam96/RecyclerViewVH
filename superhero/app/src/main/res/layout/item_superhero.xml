@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/publisher1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Publicación"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name1"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/realName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre real"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/publisher1"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp" />
+
+    <ImageView
+        android:id="@+id/photo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/name1"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="150dp"
+        android:minWidth="115dp"
+        android:minHeight="115dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
