@@ -1,7 +1,9 @@
 package com.example.superhero
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
@@ -47,6 +49,17 @@ class MainActivity : AppCompatActivity() {
         myRecycler.layoutManager = LinearLayoutManager(this)
         myAdapter.RecyclerViewAdapter(DataSource().getSuperhero(),this)
         myRecycler.adapter = myAdapter
+        myAdapter.setOnItemClickListener(object: RecyclerViewAdapter.OnItemClickListener{
+            override fun OnItemClickListener(position: Int) {
+                //Toast.makeText(this@MainActivity,"Se seleccionó el item: " +"$position",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@MainActivity,detailsuperhero::class.java)
+                intent.putExtra("name", DataSource().getSuperhero().get(position).name)
+                intent.putExtra("realName", DataSource().getSuperhero().get(position).realName)
+                intent.putExtra("publisher", DataSource().getSuperhero().get(position).publisher)
+                intent.putExtra("photo", DataSource().getSuperhero().get(position).photo)
+                startActivity(intent)
+            }
+        })
     }
 
     fun loadRecyclerH(){
@@ -55,5 +68,16 @@ class MainActivity : AppCompatActivity() {
         myRecycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         myAdapterH.RecyclerViewAdapterH(DataSource().getSuperhero(),this)
         myRecycler.adapter = myAdapterH
+        myAdapterH.setOnItemClickListener(object: RecyclerViewAdapterH.OnItemClickListener{
+            override fun OnItemClickListener(position: Int) {
+                //Toast.makeText(this@MainActivity,"Se seleccionó el item: " +"$position",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@MainActivity,detailsuperhero::class.java)
+                intent.putExtra("name", DataSource().getSuperhero().get(position).name)
+                intent.putExtra("realName", DataSource().getSuperhero().get(position).realName)
+                intent.putExtra("publisher", DataSource().getSuperhero().get(position).publisher)
+                intent.putExtra("photo", DataSource().getSuperhero().get(position).photo)
+                startActivity(intent)
+            }
+        })
     }
 }

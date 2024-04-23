@@ -14,13 +14,13 @@ import com.example.superhero.model.Superhero
 class RecyclerViewAdapterH: RecyclerView.Adapter<RecyclerViewAdapterH.ViewHolder>() {
     var superheros: MutableList<Superhero> = ArrayList()
     lateinit var context: Context
-
+    lateinit var myListener: OnItemClickListener
     fun RecyclerViewAdapterH(superhero: MutableList<Superhero>, context: Context) {
         this.superheros = superhero
         this.context = context
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, listener: OnItemClickListener) : RecyclerView.ViewHolder(view) {
         val superheroName = view.findViewById<TextView>(R.id.name1)
         val superheroRealName = view.findViewById<TextView>(R.id.realName1)
         val superheroPublisher = view.findViewById<TextView>(R.id.publisher1)
@@ -35,10 +35,25 @@ class RecyclerViewAdapterH: RecyclerView.Adapter<RecyclerViewAdapterH.ViewHolder
         fun ImageView.loadImage(url: String){
             Glide.with(context).load(url).into(this)
         }
+
+        init{
+            view.setOnClickListener {
+                listener.OnItemClickListener(bindingAdapterPosition)
+            }
+        }
+    }
+
+    interface OnItemClickListener{
+        fun OnItemClickListener(position: Int)
+
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        myListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_superhero, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_superhero, parent, false),myListener)
     }
 
     override fun getItemCount(): Int {
